@@ -110,7 +110,7 @@ def freepik_id2download_url(id_):
 
 
 if __name__ == '__main__':
-    freepik = Freepik(os.environ['FREEPIK_USERNAME'], os.environ['FREEPIK_PASSWORD'], os.environ['2CAPTCHA_API_KEY'])
+    freepik = Freepik(os.environ['FREEPIK_USERNAME'], os.environ['FREEPIK_PASSWORD'], os.environ['TWO_CAPTCHA_API_KEY'])
     if not os.path.exists('session.pickle'):
         print('creating new session')
         gr_token = freepik.sign_in()
