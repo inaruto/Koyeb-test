@@ -20,7 +20,7 @@ Your freepik account's e-mail
 
 Your freepik account's password
 
-### 2CAPTCHA_API_KEY
+### TWO_CAPTCHA_API_KEY
 
 2captcha api key from the developer or customer tab
 
