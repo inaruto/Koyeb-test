@@ -13,7 +13,7 @@ from ptbcontrib.postgres_persistence import PostgresPersistence
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 DEFAULT_TZINFO = pytz.FixedOffset(5 * 60 + 30)
-freepik_client = Freepik(os.environ['FREEPIK_USERNAME'], os.environ['FREEPIK_PASSWORD'], os.environ['2CAPTCHA_API_KEY'])
+freepik_client = Freepik(os.environ['FREEPIK_USERNAME'], os.environ['FREEPIK_PASSWORD'], os.environ['TWO_CAPTCHA_API_KEY'])
 
 
 class InvalidURLError(Exception):
