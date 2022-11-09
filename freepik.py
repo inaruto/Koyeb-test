@@ -41,7 +41,7 @@ class Freepik:
 
     def sign_in(self) -> bool:
         print('signing in')
-        login_page_url = 'https://id.freepikcompany.com/v2/assets/index.1ecef48c.js'
+        login_page_url = 'https://id.freepikcompany.com/v2/assets/index.f5a17cf9.js'
         sign_in_page_resp = self.session.get(login_page_url)
         # csrf_name = self.csrf_name_re.search(sign_in_page_resp.text).group(1)
         # csrf_value = self.csrf_value_re.search(sign_in_page_resp.text).group(1)
