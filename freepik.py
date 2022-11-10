@@ -16,11 +16,7 @@ class Freepik:
         self.solver = TwoCaptcha(_2captcha_key)
         self.xhr_headers = {'x-requested-with': 'XMLHttpRequest'}
         self.on_premium_end = None
-        self.sitekey_re = re.compile(r'data-sitekey="(\S+)"')
-        self.sitekey_re2 = re.compile(r"var RE_CAPTCHA_KEY_INVISIBLE = '(\S+)'")
-        self.sitekey_re3 = re.compile(r'RECAPTCHA_SITE_KEY\)!=null\?Sl:"(\S+)"')
-        self.sitekey_re4 = re.compile(r'RECAPTCHA_SITE_KEY\)!=null?km:"(\S+)"')
-        self.sitekey_res = [self.sitekey_re,self.sitekey_re2, self.sitekey_re3,self.sitekey_re4]
+        self.sitekey=os.environ['SITE_KEY']
         self.csrf_name_re = re.compile(r'name="csrf_name" value="(\S+)"')
         self.csrf_value_re = re.compile(r'name="csrf_value" value="(\S+)"')
         self.id_re = re.compile(r'(\d+)\.htm')
@@ -29,16 +25,11 @@ class Freepik:
         self.on_premium_end = f
 
     def _solve_invisible_captcha(self, resp: requests.Response):
-        for sitekey_re in self.sitekey_res:
-            try:
-                sitekey = sitekey_re.search(resp.text).group(1)
-            except AttributeError as e:
-                continue
-            try:
-                with threading.Lock():
-                    return self.solver.recaptcha(sitekey=sitekey, url=resp.request.url, invisible=1)['code']
-            except Exception as e:
-                raise e
+        try:
+            with threading.Lock():
+                return self.solver.recaptcha(sitekey=self.sitekey, url=resp.request.url, invisible=1)['code']
+        except Exception as e:
+            raise e
 
     def sign_in(self) -> bool:
         print('signing in')
